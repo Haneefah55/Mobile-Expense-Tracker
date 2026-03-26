@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "owner": "haneefah55",
     "icon": "./assets/images/splash-icon.png",
-    "scheme": "wallet",
+    "scheme": "Wallet",
     "platforms": [
       "ios",
       "android",
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE"
+        "backgroundColor": "#F0ABFCF"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -40,7 +40,7 @@
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#fae8ff"
+      "backgroundColor": "#fffff"
     },
     "plugins": [
       "expo-router",
@@ -50,7 +50,7 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#fae8ff"
+          "backgroundColor": "#ffffff"
         }
       ],
       [

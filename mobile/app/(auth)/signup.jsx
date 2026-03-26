@@ -99,7 +99,6 @@ const SignUpScreen = () => {
             className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-5 placeholder:text-grey-400 "
             placeholder='Enter your username' 
             onChangeText={(name) => setName(name)}
-            keyboardType='email-address'
             placeholderTextColor={"#9ca3af"}
             style={{ color: "#000000"}}
     
@@ -111,6 +110,7 @@ const SignUpScreen = () => {
             className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-5 placeholder:text-grey-400"
             placeholder='Enter your email'
             autoCapitalize='none'
+            keyboardType='email-address'
             onChangeText={(email) => setEmail(email)}
             placeholderTextColor={"#9ca3af"}
             style={{ color: "#000000"}}
