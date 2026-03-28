@@ -112,7 +112,7 @@ const budgetHome = () => {
   },[start])
 
   return (
-    <View className=" bg-gray-50 mt-15  relative px-4 py-4 flex-1 flex-col">
+    <View className=" bg-gray-50  relative px-4 py-4 flex-1 flex-col">
 
       <View className=" mb-5">
         <TouchableOpacity className="" onPress={() => router.push('/(tabs)/home') }>

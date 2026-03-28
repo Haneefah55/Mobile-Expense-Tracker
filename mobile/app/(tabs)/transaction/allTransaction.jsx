@@ -110,7 +110,7 @@ const Transaction = () => {
 
 
   return (
-    <View className="flex-1 flex-col mt-10 px-4">
+    <View className="flex-1 flex-col py-6 px-4">
       <View className=" relative mb-5">
         <TouchableOpacity onPress={() => router.replace("/(tabs)/home") }>
           <Ionicons name='arrow-back' size={20} />

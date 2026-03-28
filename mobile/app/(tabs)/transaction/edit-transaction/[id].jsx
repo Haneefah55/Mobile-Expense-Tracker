@@ -154,7 +154,7 @@ const editTransaction = () => {
 
   return (
     <KeyboardAwareScrollView
-      style={{ flex: 1, backgroundColor: "#fFf" }}
+      style={{ flex: 1, backgroundColor: "#fff" }}
       extraScrollHeight={Platform.OS === "ios" ? 20 : 80} // Optional: Adjusts extra space when keyboard appears
       enableOnAndroid={true}
       enableAutomaticScroll={true}

@@ -7,6 +7,7 @@ import axios from 'axios'
 import { OAuth2Client } from 'google-auth-library'
 import bcrypt from 'bcryptjs'
 import cloudinary from '../utils/cloudinary.js'
+import { redis } from '../utils/redis.js'
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
@@ -78,19 +79,25 @@ export const login = async(req, res) =>{
   
     if(user && (await user.comparePassword(password))) {
       
-      
       generateTokenAndSetCookie(res, user._id, user.tokenVersion)
-      
-
-    
     
       user.lastLogin = new Date()
     
       await user.save()
         
       console.log("User login successfully")
+
+      const userInfo = {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        lastLogin: user.lastLogin,
+        image: user.image,
+        pendingEmail: user.pendingEmail,
+        isVerified: user.isVerified
+      }
     
-      res.status(200).json({ ...user._doc, password: undefined })
+      res.status(200).json({ user: userInfo })
 
     } else {
       throw new Error("Incorrect email or password")
@@ -116,7 +123,19 @@ export const getUser = async(req, res) =>{
       res.status(404).json({ success: false, message: "User not found"})
     }
 
-    res.status(200).json(user)
+    const userInfo = {
+      id: user._id,
+      email: user.email,
+      name: user.name,
+      lastLogin: user.lastLogin,
+      image: user.image,
+      pendingEmail: user.pendingEmail,
+      isVerified: user.isVerified
+    }
+  
+    res.status(200).json({ user: userInfo })
+
+
   } catch (error) {
     console.error("Error in get user contoller", error.message);
     res.status(500).json({ 
@@ -165,15 +184,17 @@ export const authGoogle = async (req, res) => {
 
 
 export const callback = async (req, res) => {
+  console.log(req.query)
 
-  const { code } = req.query
+  const code = req.query.code
+  console.log(code)
   
   try {
 
     const googleRes = await axios.post("https://oauth2.googleapis.com/token", {
       client_id: process.env.GOOGLE_CLIENT_ID,
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
-      code,
+      code: req.query.code,
       redirect_uri: process.env.REDIRECT_URI,
       grant_type: 'authorization_code'
     })
@@ -217,63 +238,76 @@ export const callback = async (req, res) => {
   
     await user.save()
 
-    const token = generateToken(user._id, user.tokenVersion)
+    generateTokenAndSetCookie(res, user._id, user.tokenVersion)
       
     console.log("User login successfully")
 
-    //console.log(user)
+    const code = Math.floor(100000 + Math.random() * 900000).toString()
 
-    const userString = encodeURIComponent(JSON.stringify(user))
-    const redirect_uri = `wallet://(auth)/callback?token=${token}`
-    
-    //`exp://10.33.63.215:8081/--/(auth)/callback?token=${token}` 
+
+    const hashedcode = await bcrypt.hash(code, 10)
+    console.log("code", hashedcode)
+    const id = user._id.toString()
+
+    await redis.set(`auth_code: ${hashedcode}`, id, "EX", 60) //expires in 60 seconds
+   
+   
+    //const redirect_uri = `wallet://(auth)/callback?code=${hashedcode}`
+    const redirect_uri = `exp://10.45.55.215:8081/--/(auth)/callback?code=${hashedcode}` 
     
     res.redirect(redirect_uri)
-   
+    
     
     
   } catch (error) {
 
     console.log(error)
   
-    const redirect_uri =  `wallet://(auth)/login`
+    const redirect_uri =  `exp://10.45.55.215:8081/--/(auth)/login`//wallet://(auth)/login`
     res.redirect(redirect_uri)
-     
   }
 }
 
 
-export const verifyToken = async (req, res) => {
+export const verifyAuthCode = async (req, res) => {
 
-  const { token } = req.body
+  const { code } = req.body
 
-  console.log("token", token)
+  console.log("auth-code", code)
 
-  if(!token){
-    return res.status(400).json({ error: "no token provided" })
+  if(!code){
+    return res.status(400).json({ error: "no code provided" })
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_TOKEN_SECRET)
-    const user = await User.findById(decoded.userId).select("-password")
+    const key = `auth_code: ${hashedcode}`
 
-    if(user.tokenVersion !== decoded.tokenVersion) {
-      
-      return res.status(401).json({ message: "Unauthorized" })
+    const userId = await redis.get(key)
+
+    if(!userId) {
+      return res.status(400).json({ message: "Invalid or expired code" })
     }
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 2 * 24 * 60 * 60 * 1000,
-    })
 
-    
-    res.json(user)
+    //delete key
+    await redis.del(key)
+
+    const user = await User.findById(userId)
+    const userInfo = {
+      id: user._id,
+      email: user.email,
+      name: user.name,
+      lastLogin: user.lastLogin,
+      image: user.image,
+      pendingEmail: user.pendingEmail,
+      isVerified: user.isVerified
+    }
+  
+    res.status(200).json({ user: userInfo })
+
 
   } catch (error) {
-    console.error("Error in verify token contoller", error.message);
+    console.error("Error in verify auth code contoller", error.message);
     res.status(400).json({ 
       success: false,
       message: error.message

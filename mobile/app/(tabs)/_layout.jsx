@@ -24,7 +24,7 @@ const Layout = () => {
             paddingBottom: 1,
             paddingTop: 1,
             height: 80,
-            marginBottom: 1,
+          
           },
 
           tabBarLabelStyle: {

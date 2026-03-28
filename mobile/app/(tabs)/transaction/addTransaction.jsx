@@ -120,7 +120,7 @@ const addTransaction = () => {
 
   return (
     <KeyboardAwareScrollView
-      style={{ flex: 1, backgroundColor: "#fFf" }}
+      style={{ flex: 1 }}
       extraScrollHeight={Platform.OS === "ios" ? 20 : 80} // Optional: Adjusts extra space when keyboard appears
       enableOnAndroid={true}
       enableAutomaticScroll={true}
@@ -130,7 +130,7 @@ const addTransaction = () => {
       contentContainerStyle={{ flexGrow: 1 }}
     
     >
-      <View className= "mt-10 flex px-3 flex-col mb-10">
+      <View className= " flex px-3 py-6 flex-col pb-10">
         <View className=" relative mb-5">
           <TouchableOpacity onPress={() => router.replace("/(tabs)/home")}>
             <Ionicons name='arrow-back' size={20} />

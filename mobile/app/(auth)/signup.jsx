@@ -19,12 +19,13 @@ WebBrowser.maybeCompleteAuthSession()
 
 const SignUpScreen = () => {
 
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL
-  const start = async() => {
-    await WebBrowser.openBrowserAsync(`${apiUrl}/auth/google`)
-
-    //console.log(result)
-  }
+   const apiUrl = 'http://10.45.55.215:5000/api' //process.env.EXPO_PUBLIC_API_URL
+  
+    const start = async() => {
+        await WebBrowser.openBrowserAsync(`${apiUrl}/auth/google`)
+    
+        //console.log(result)
+    }
 
  
 
@@ -44,26 +45,17 @@ const SignUpScreen = () => {
 
     console.log(name, email, password)
 
-    try {
-
-      if(!name || !email || !password){
-        
-        Alert.alert("All fields are required");
-        
-        return
-        
-      }
+    if(!name || !email || !password){
       
-      await signup(name, email, password)
-      router.replace('/(auth)/login')
+      Alert.alert("All fields are required");
       
-    } catch (error) {
+      return
       
-      //console.error(error)
-      
-
-    } 
+    }
     
+    await signup(name, email, password)
+    router.replace('/(auth)/login')
+      
   }
 
   
@@ -87,16 +79,19 @@ const SignUpScreen = () => {
       <View className="flex-1 items-center mt-16 mb-10 justify-center font-outfit bg-fuchsia-100 ">
 
           <Image
-            className="w-[250px] h-[250px] object-contain"
+            className="w-[60px] h-[60px] object-contain"
             source={require("../../assets/images/icon.png")}
     
           />
+          <Text className="mt-3 mb-7 font-outfit-bold text-4xl text-fuchsia-900">
+            Wallet 
+          </Text>
     
-          <Text className=" mt-5 mb-3 font-outfit-bold  text-4xl ">Create Account</Text>
+          <Text className=" mt-5 font-outfit-bold  text-4xl ">Create Account</Text>
     
           <TextInput 
             value={name}
-            className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-5 placeholder:text-grey-400 "
+            className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-3 placeholder:text-grey-400 "
             placeholder='Enter your username' 
             onChangeText={(name) => setName(name)}
             placeholderTextColor={"#9ca3af"}
@@ -107,7 +102,7 @@ const SignUpScreen = () => {
 
           <TextInput 
             value={email}
-            className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-5 placeholder:text-grey-400"
+            className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-3 placeholder:text-grey-400"
             placeholder='Enter your email'
             autoCapitalize='none'
             keyboardType='email-address'
@@ -123,6 +118,7 @@ const SignUpScreen = () => {
             className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-5 placeholder:text-grey-400"
             placeholder='Enter your password'
             secureTextEntry={true}
+            autoCapitalize='none'
             onChangeText={(password) => setPassword(password)}
             placeholderTextColor={"#9ca3af"}
             style={{ color: "#000000"}}
@@ -140,7 +136,7 @@ const SignUpScreen = () => {
             <Text className="text-gray-700 font-outfit-medium text-xl">Already have an account?</Text>
         
             <TouchableOpacity onPress={() => router.replace('/(auth)/login')}>
-              <Text className="text-gray-500 ml-2 font-outfit-medium text-xl">Log In</Text>
+              <Text className="text-gray-500 ml-2 font-outfit-medium text-2xl">Log In</Text>
             </TouchableOpacity>
             
     
@@ -150,9 +146,9 @@ const SignUpScreen = () => {
           
           </View>
   
-          <Text className="text-center font-outfit-medium text-lg mt-3">Continue with</Text>
+          <Text className="text-center  font-outfit-medium text-lg mt-3"> Or continue with</Text>
   
-          <TouchableOpacity className="w-[280px] mb-10 bg-white text-white mt-4 p-3 flex rounded-lg items-center justify-center" onPress={() => start()}>
+          <TouchableOpacity className="w-[280px] mb-10 bg-white mt-4 p-3 flex rounded-lg items-center justify-center" onPress={() => start()}>
             <Image 
               className="w-[70px] h-[23px] object-contain"
               source={require("../../assets/images/goo.png")}

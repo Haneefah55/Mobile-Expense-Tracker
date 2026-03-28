@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "wallet",
+    "name": "Wallet",
     "slug": "wallet",
     "version": "1.0.0",
     "orientation": "portrait",
     "owner": "haneefah55",
     "icon": "./assets/images/splash-icon.png",
-    "scheme": "Wallet",
+    "scheme": "wallet",
     "platforms": [
       "ios",
       "android",
@@ -16,11 +16,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.haneefah.wallet"
+      "bundleIdentifier": "com.haneefah.wallet",
+      "icon": "./assets/images/splash-icon.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#F0ABFCF"
+        "foregroungImage": "./assets/images/splash-icon.png",
+        "backgroundColor": "#f0abfc"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,

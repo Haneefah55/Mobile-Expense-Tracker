@@ -7,13 +7,14 @@ import * as SplashScreen from 'expo-splash-screen'
 import '../global.css'
 import Toast from 'react-native-toast-message';
 import { useFonts } from 'expo-font'
-import { ActivityIndicator, Alert, Animated, AppState, StatusBar, View } from 'react-native';
+import { ActivityIndicator, Alert, Animated, View } from 'react-native';
 import axios from '../utils/axios.js'
 
 
 import { useAuthStore } from '../store/authStore.js';
 import { useEffect, useRef, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar'
 
 
 SplashScreen.preventAutoHideAsync()
@@ -90,23 +91,6 @@ export default function RootLayout() {
 
   }, [isAuthenticated, pathname, isReady, user])
 
-/*   useEffect(() => {
-    const fetchBackend = async () =>{
-      try {
-        const res = await axios.get('/')
-        console.log(res)
-        //Alert.alert(res.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-
-    fetchBackend()
-  }, []) */
-
-
-
 
   if(!fontsLoaded){
 
@@ -123,8 +107,8 @@ export default function RootLayout() {
   return (
     
       <SafeAreaProvider>
-        <Animated.View className="flex-1 bg-fuchsia-200">
-          <StatusBar barStyle={'dark'}  />
+        <Animated.View className="flex-1 ">
+          <StatusBar  style='light'  backgroundColor='#000' />
           <Stack>
             
             <Stack.Screen name='index' options={{ headerShown: false }} />

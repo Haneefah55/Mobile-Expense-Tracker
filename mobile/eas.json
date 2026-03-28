@@ -8,7 +8,7 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://10.45.55.215:5000/api"
+        "EXPO_PUBLIC_API_URL": "https://wallet-mobile.onrender.com/api"
       }
       
     },
@@ -19,7 +19,7 @@
         "gradleCommand": ":app:assembleRelease"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL":"https://wallet-353q.onrender.com/api"
+        "EXPO_PUBLIC_API_URL":"https://wallet-mobile.onrender.com/api"
       }
     },
     "production": {

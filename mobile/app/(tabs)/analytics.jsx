@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Modal } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
@@ -213,10 +213,11 @@ const analytics = () => {
       <ScrollView
         vertical
         showsVerticalScrollIndicator={false}
+    
 
       >
 
-        <View className="flex w-full mt-3 flex-col">
+        <View className="flex w-full mt-3 pb-10 flex-col">
           <View className="relative flex flex-row px-4 items-center justify-between">
             <Text className="font-outfit-semibold text-xl">Overview</Text>
             <TouchableOpacity className="flex flex-row gap-3 items-center justify-center border-2 border-fuchsia-900 p-2 rounded-lg" onPress={() => setIsDrop(!isDrop)}>
@@ -289,7 +290,7 @@ const analytics = () => {
 
           {
             activeTab === "income" &&
-            <View className="flex flex-col mt-5">
+            <View className="flex flex-col mt-5 pb-[10rem]">
               
               <View className="flex flex-row items-center justify-between relative">
                 <Text className="font-outfit-semibold text-2xl">Your Income Category</Text>
@@ -298,8 +299,11 @@ const analytics = () => {
                   <Ionicons name='chevron-up' className={`${isDropB ? "flex" : "hidden"}`}/>
                   <Ionicons name='chevron-down' className={`${isDropB ? "hidden" : "flex"}`}/>
                 </TouchableOpacity>
+
+            
     
-                <View className ={`${isDropB ? "flex" : "hidden"} absolute flex-col items-left justify-center p-2 top-12 shadow-md right-2 w-[150px] bg-white z-20 h-[180px]`}>
+                <View className ={`${isDropB ? "flex" : "hidden"} absolute flex-col items-left justify-center p-2 z-20 top-12 shadow-md right-2 w-[150px] bg-white h-[180px]`}>
+                  
     
                   {result.map((item) => (
                     <TouchableOpacity key={item.start} onPress={() =>handleSelectMonth(item)}>
@@ -310,6 +314,7 @@ const analytics = () => {
     
     
                 </View>
+                
               </View>
 
               {

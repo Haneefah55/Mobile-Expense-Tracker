@@ -5,7 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router'
 
 const callback = () => {
 
-  const { verifyToken, user } = useAuthStore()
+  const { verifyAuthCode, user } = useAuthStore()
 
   console.log("user", user)
 
@@ -13,9 +13,9 @@ const callback = () => {
 
   const router = useRouter()
 
-  const { token } = useLocalSearchParams()
+  const { code } = useLocalSearchParams()
 
-  console.log("token", token)
+  console.log("code", code)
   
   if(user) {
     router.replace('/(tabs)/home')
@@ -24,9 +24,9 @@ const callback = () => {
   useEffect(() =>{
 
 
-    verifyToken(token)
+    verifyAuthCode(code)
 
-  },[token]) 
+  },[code]) 
 
   return (
     <View className="flex-1 items-center justify-center">

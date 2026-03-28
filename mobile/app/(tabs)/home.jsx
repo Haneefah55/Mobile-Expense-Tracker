@@ -83,7 +83,7 @@ const HomeScreen = () => {
 
     fetchWeeklyExpense()
 
-  }, [startDate])
+  }, [startDate, expenses])
 
   useEffect(() => {
 

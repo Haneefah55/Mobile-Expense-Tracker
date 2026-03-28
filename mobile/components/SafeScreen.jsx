@@ -1,14 +1,14 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const SafeScreen = ({ children }) => {
 
-  const insets = useSafeAreaInsets()
+  //const insets = useSafeAreaInsets()
   return (
-    <View style={{ paddingTop: insets.top, flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#000' }}>
       {children}
-    </View>
+    </SafeAreaView>
   )
 }
 

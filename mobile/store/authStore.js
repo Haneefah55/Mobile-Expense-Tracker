@@ -83,10 +83,10 @@ export const useAuthStore = create((set, get) =>({
     }
   },
 
-  verifyToken: async(token) =>{
+  verifyAuthCode: async(code) =>{
     try {
-      const res = await axios.post('/auth/verify-token', { token: String(token) })
-      console.log("verify res", res.data)
+      const res = await axios.post('/auth/verify-auth-code', { code })
+      console.log("verify auth res", res.data)
       set({ user: res.data, isAuthenticated: true })
     } catch (error) {
       console.log(error)

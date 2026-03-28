@@ -42,13 +42,15 @@ const Index = () => {
     <View className="flex-1 items-center px-5 bg-fuchsia-100 justify-center flex-col">
       <View className="mt-20 -mb-3 ">
         <Image
-          className="w-[250px] h-[250px] object-contain"
+          className="w-[80px] h-[80px] object-contain"
           source={require('../assets/images/icon.png')}
 
         />
       </View>
 
-      <Text className="font-outfit-bold mb-5 text-fuchsia-950 text-4xl">Track. Analyze. Save.</Text>
+      <Text className="mt-8 font-outfit-bold mb-5 text-5xl text-fuchsia-900">Wallet</Text>
+
+      <Text className="font-outfit-bold mt-5 mb-2 text-fuchsia-950 text-3xl">Track. Analyze. Save.</Text>
       <Text className="font-outfit text-center text-fuchsia-950 mb-3 text-xl w-[280px] ">Effortlessly track your expenses, manage your budget and reach your financial goals faster.</Text>
 
       <TouchableOpacity 

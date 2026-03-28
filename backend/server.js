@@ -31,12 +31,6 @@ app.get('/health', (req, res) =>{
 
 
 
-
-
-
-
-
-
 app.listen(port, '0.0.0.0', () =>{
   connectDb()
   console.log(`server running on port ${port}`)

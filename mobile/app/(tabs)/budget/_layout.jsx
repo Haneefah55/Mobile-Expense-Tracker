@@ -6,12 +6,12 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const BudgetLayout = () => {
   return (
 
-    <SafeAreaView style={{ flex: 1 }}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='index' />
-        <Stack.Screen name='add-budget' />
-      </Stack>
-    </SafeAreaView>
+    
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='index' />
+      <Stack.Screen name='add-budget' />
+    </Stack>
+    
     
   )
 }

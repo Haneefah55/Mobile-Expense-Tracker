@@ -12,7 +12,7 @@ WebBrowser.maybeCompleteAuthSession()
 
 const LoginScreen = () => {
 
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL
+  const apiUrl = 'http://10.45.55.215:5000/api' //process.env.EXPO_PUBLIC_API_URL
 
   const start = async() => {
       await WebBrowser.openBrowserAsync(`${apiUrl}/auth/google`)
@@ -26,7 +26,7 @@ const LoginScreen = () => {
   const { login, isLoading, error, user } = useAuthStore()
 
   const handleLogin = async() =>{
-   try {
+
      if(!email || !password){
       Alert.alert("Please fill all the fields")
       return
@@ -34,12 +34,7 @@ const LoginScreen = () => {
     console.log(email, password)
 
     await login(email, password)
-    
-    
-
-   } catch (error) {
-      
-   }
+   
   }
 
   useEffect(() =>{
@@ -65,12 +60,15 @@ const LoginScreen = () => {
       <View className="flex-1 bg-fuchsia-100 items-center justify-center w-[100%] px-4">
 
         <Image
-          className="w-[250px] h-[250px] object-contain"
+          className="w-[60px] h-[60px] mt-20 object-contain"
           source={require("../../assets/images/icon.png")}
-
+  
         />
+        <Text className="mt-3 mb-7 font-outfit-bold text-4xl text-fuchsia-900">
+          Wallet 
+        </Text>
 
-        <Text className="font-outfit-bold text-4xl mt-3 ">Welcome Back</Text>
+        <Text className="font-outfit-bold text-3xl mt-3 ">Welcome Back</Text>
 
         <TextInput 
           value={email}
@@ -89,6 +87,7 @@ const LoginScreen = () => {
           className="p-3 bg-white border-2 border-fuchsia-900 font-outfit rounded-lg  w-[280px] mt-3 placeholder:text-grey-400"
           placeholder='Enter your password'
           secureTextEntry={true}
+          autoCapitalize='none'
           placeholderTextColor={"#9ca3af"}
           style={{ color: "#000000"}}
           onChangeText={(password) => setPassword(password)}
