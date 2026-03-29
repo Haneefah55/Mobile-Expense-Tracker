@@ -97,7 +97,7 @@ export const login = async(req, res) =>{
         isVerified: user.isVerified
       }
     
-      res.status(200).json({ user: userInfo })
+      res.status(200).json(userInfo)
 
     } else {
       throw new Error("Incorrect email or password")
@@ -133,7 +133,7 @@ export const getUser = async(req, res) =>{
       isVerified: user.isVerified
     }
   
-    res.status(200).json({ user: userInfo })
+    res.status(200).json(userInfo)
 
 
   } catch (error) {
@@ -238,10 +238,6 @@ export const callback = async (req, res) => {
   
     await user.save()
 
-    generateTokenAndSetCookie(res, user._id, user.tokenVersion)
-      
-    console.log("User login successfully")
-
     const code = Math.floor(100000 + Math.random() * 900000).toString()
 
 
@@ -295,6 +291,8 @@ export const verifyAuthCode = async (req, res) => {
     await redis.del(key)
 
     const user = await User.findById(userId)
+    generateTokenAndSetCookie(res, user._id, user.tokenVersion)
+
     const userInfo = {
       id: user._id,
       email: user.email,
@@ -305,7 +303,7 @@ export const verifyAuthCode = async (req, res) => {
       isVerified: user.isVerified
     }
   
-    res.status(200).json({ user: userInfo })
+    res.status(200).json(userInfo)
 
 
   } catch (error) {
