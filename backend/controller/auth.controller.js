@@ -280,6 +280,8 @@ export const verifyAuthCode = async (req, res) => {
   }
 
   try {
+
+    const hashedcode = code
     const key = `auth_code: ${hashedcode}`
 
     const userId = await redis.get(key)
