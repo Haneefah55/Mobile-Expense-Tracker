@@ -249,7 +249,7 @@ export const callback = async (req, res) => {
     console.log("code", hashedcode)
     const id = user._id.toString()
 
-    await redis.set(`auth_code: ${hashedcode}`, id, "EX", 60) //expires in 60 seconds
+    await redis.set(`auth_code: ${hashedcode}`, id, { ex: 60 }) //expires in 60 seconds
    
    
     //const redirect_uri = `wallet://(auth)/callback?code=${hashedcode}`
