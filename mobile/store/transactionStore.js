@@ -20,7 +20,7 @@ export const useTransactionStore = create((set, get) =>({
       set({ loading: false, transactions: res.data })
       
     } catch (error) {
-      console.log(error.message)
+      console.log("fetch all trans", error.message)
     }
   },
 
@@ -36,7 +36,7 @@ export const useTransactionStore = create((set, get) =>({
         expenseSummary: res.data.expenseSummary
       })
     } catch (error) {
-      console.log(error)
+      console.log("summry", error)
     }
   },
 

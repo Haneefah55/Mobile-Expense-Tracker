@@ -94,7 +94,8 @@ export const login = async(req, res) =>{
         lastLogin: user.lastLogin,
         image: user.image,
         pendingEmail: user.pendingEmail,
-        isVerified: user.isVerified
+        isVerified: user.isVerified,
+        createdAt: user.createdAt
       }
     
       res.status(200).json(userInfo)
@@ -130,7 +131,8 @@ export const getUser = async(req, res) =>{
       lastLogin: user.lastLogin,
       image: user.image,
       pendingEmail: user.pendingEmail,
-      isVerified: user.isVerified
+      isVerified: user.isVerified,
+      createdAt: user.createdAt
     }
   
     res.status(200).json(userInfo)
@@ -248,8 +250,8 @@ export const callback = async (req, res) => {
     await redis.set(`auth_code: ${hashedcode}`, id, { ex: 60 }) //expires in 60 seconds
    
    
-    //const redirect_uri = `wallet://(auth)/callback?code=${hashedcode}`
-    const redirect_uri = `exp://10.45.55.215:8081/--/(auth)/callback?code=${hashedcode}` 
+  
+    const redirect_uri = `wallet//(auth)/callback?code=${hashedcode}` 
     
     res.redirect(redirect_uri)
     
@@ -259,7 +261,7 @@ export const callback = async (req, res) => {
 
     console.log(error)
   
-    const redirect_uri =  `exp://10.45.55.215:8081/--/(auth)/login`//wallet://(auth)/login`
+    const redirect_uri =  `wallet//(auth)/login`//wallet://(auth)/login`
     res.redirect(redirect_uri)
   }
 }
@@ -300,7 +302,8 @@ export const verifyAuthCode = async (req, res) => {
       lastLogin: user.lastLogin,
       image: user.image,
       pendingEmail: user.pendingEmail,
-      isVerified: user.isVerified
+      isVerified: user.isVerified,
+      createdAt: user.createdAt
     }
   
     res.status(200).json(userInfo)

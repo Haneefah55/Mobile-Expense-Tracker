@@ -12,7 +12,7 @@ import { useRouter } from 'expo-router'
 
 const HomeScreen = () => {
   const { user } = useAuthStore()
-  //console.log(user)
+  console.log("ome", user)
 
   const [isDrop, setIsDrop] = useState(false)
   

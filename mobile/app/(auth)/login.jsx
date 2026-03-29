@@ -12,7 +12,7 @@ WebBrowser.maybeCompleteAuthSession()
 
 const LoginScreen = () => {
 
-  const apiUrl = 'http://10.45.55.215:5000/api' //process.env.EXPO_PUBLIC_API_URL
+  const apiUrl = 'https://wallet-mobile.onrender.com/api' //process.env.EXPO_PUBLIC_API_URL
 
   const start = async() => {
       await WebBrowser.openBrowserAsync(`${apiUrl}/auth/google`)

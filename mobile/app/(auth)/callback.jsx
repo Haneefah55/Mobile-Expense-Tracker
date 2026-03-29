@@ -7,7 +7,7 @@ const callback = () => {
 
   const { verifyAuthCode, user } = useAuthStore()
 
-  console.log("user", user)
+  //console.log("user", user)
 
  
 
@@ -17,14 +17,15 @@ const callback = () => {
 
   console.log("code", code)
   
-  if(user) {
-    router.replace('/(tabs)/home')
-  }
+  
 
   useEffect(() =>{
 
 
     verifyAuthCode(code)
+    
+    router.replace('/')
+
 
   },[code]) 
 

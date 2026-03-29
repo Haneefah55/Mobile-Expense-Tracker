@@ -18,7 +18,7 @@ export const useAuthStore = create((set, get) =>({
     try {
       const res = await axios.post('/auth/login', { email, password })
       console.log(res.data)
-      set({ isLoading: false, user: res.data, isAuthenticated: true })
+      set({ isLoading: false, user: res.data.user, isAuthenticated: true })
     
     } catch (error) {
       console.log(error.response?.data?.message,)

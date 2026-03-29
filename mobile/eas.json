@@ -25,7 +25,7 @@
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL":"https://wallet-353q.onrender.com/api"
+        "EXPO_PUBLIC_API_URL":"https://wallet-mobile.onrender.com/api"
       }
     }
   },

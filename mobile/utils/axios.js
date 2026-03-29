@@ -4,7 +4,7 @@ import { EXPO_PUBLIC_API_URL } from '@env'
 const apiUrl = process.env.EXPO_PUBLIC_API_URL
 
 const axiosInstance = axios.create({
-  baseURL: "http://10.45.55.215:5000/api",    //http://10.45.55.215:5000/api', //apiUrl
+  baseURL: "https://wallet-mobile.onrender.com/api", 
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
