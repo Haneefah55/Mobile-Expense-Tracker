@@ -9,7 +9,7 @@ const Index = () => {
   const { user } = useAuthStore()
   const router = useRouter()
 
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL
+ 
 
   useEffect(() =>{
     if(user){
@@ -23,7 +23,7 @@ const Index = () => {
       try {
         const res = await axiosInstance.get('/fetch')
 
-        Alert.alert('response from backend', res.data.message)
+        //Alert.alert('response from backend', res.data.message)
         //console.log('response from backend', res.data)
       } catch (error) {
         console.log(error.message)

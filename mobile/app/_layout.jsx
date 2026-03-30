@@ -85,6 +85,11 @@ export default function RootLayout() {
     //const inAuthGroup = segment[0] === '(auth)'
     const isAuthRoute = pathname.includes('(auth)')
     const isTabsRoute = pathname.includes('(tabs)')
+    if(!user && isTabsRoute) {
+      router.replace('/(auth)/login')
+    } 
+
+
     if(user && isAuthRoute) {
       router.replace('/(tabs)')
     } 
