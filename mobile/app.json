@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "owner": "haneefah55",
-    "icon": "./assets/images/splash-icon.png",
+    "icon": "./assets/images/icon.png",
     "scheme": "wallet",
     "platforms": [
       "ios",
@@ -17,12 +17,12 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.haneefah.wallet",
-      "icon": "./assets/images/splash-icon.png"
+      "icon": "./assets/images/icon.png"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroungImage": "./assets/images/splash-icon.png",
-        "backgroundColor": "#f0abfc"
+        "foregroungImage": "./assets/images/icon2.png",
+        "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -42,7 +42,7 @@
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#fffff"
+      "backgroundColor": "#ffffff"
     },
     "plugins": [
       "expo-router",

@@ -4,12 +4,24 @@ import { Redirect, useRouter, Stack, Tabs } from 'expo-router'
 
 import { Ionicons } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useAuthStore } from '../../store/authStore.js'
 
 
 const Layout = () => {
 
-  const router = useRouter()
+  const { user } = useAuthStore()
 
+  const router = useRouter()
+  
+  useEffect(() =>{
+
+
+    if(!user) {
+      router.replace('/(auth)/login')
+    }
+    
+
+  }, [])
   return (
 
     <SafeAreaView style={{ flex: 1 }}>
