@@ -251,7 +251,7 @@ export const callback = async (req, res) => {
    
    
   
-    const redirect_uri = `wallet//(auth)/callback?code=${hashedcode}` 
+    const redirect_uri = `wallet://(auth)/callback?code=${hashedcode}` 
     
     res.redirect(redirect_uri)
     
@@ -261,7 +261,7 @@ export const callback = async (req, res) => {
 
     console.log(error)
   
-    const redirect_uri =  `wallet//(auth)/login`//wallet://(auth)/login`
+    const redirect_uri =  `wallet://(auth)/login`//wallet://(auth)/login`
     res.redirect(redirect_uri)
   }
 }
